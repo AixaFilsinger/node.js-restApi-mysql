@@ -30,7 +30,8 @@ export const getEmployee = async (req, res) => {
 };
 
 export const createEmployees = async (req, res) => {
-  const { tituloReceta, imagen, categoria, dificultad, descripcion } = req.body;
+  const { tituloReceta, imagen, categoria, dificultad, descripcion } = req.body.receta;
+  console.log('creando')
   try {
     const [rows] = await pool.query(
       "INSERT INTO recetas (tituloReceta, imagen, categoria, dificultad, descripcion) VALUES (?, ?, ?, ?, ?)",

@@ -1,4 +1,5 @@
 import { pool } from "../db.js";
+import  jwt  from "jsonwebtoken";
 
 
 export const login = async (req, res) => {
@@ -24,14 +25,19 @@ export const login = async (req, res) => {
           message: "Credenciales incorrectas",
         });
       }
-  
+      const payload = { id: rows[0].id, email: rows[0].email};
+      const secreto = process.env.SECRET_KEY || 'nohay';
+      const opciones = { expiresIn: '1h' };  // Opciones adicionales, como tiempo de expiración
+      const token = jwt.sign(payload, secreto, opciones);
+      console.log(token)
+      
       // Si las credenciales son válidas, puedes devolver información del usuario si es necesario
       res.json({
         message: "Inicio de sesión exitoso",
         user: {
           id: rows[0].id,
           email: rows[0].email,
-          // ...otros campos que desees devolver
+          token
         },
       });
     } catch (error) {
