@@ -1,7 +1,7 @@
 import { pool } from "../db.js";
 
 export const getEmployees = async (req, res) => {
-  res.header('Acces-Control-Allow-Origin','*')
+  //res.header('Acces-Control-Allow-Origin','*')
   try {
     const [rows] = await pool.query("SELECT * FROM recetas");
     res.json(rows);
