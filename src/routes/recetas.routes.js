@@ -1,17 +1,17 @@
 import { Router } from "express";
-import { getEmployees, createEmployees, updateEmployees, deleteEmployees, getEmployee} from "../controllers/employees.controller.js";
+import { getRecetas, createRecetas, updateRecetas, deleteRecetas, getReceta} from "../controllers/recetas.controller.js";
 import { verificarJwt } from "../middlewares.js";
 
 const router = Router()
 
-router.get('/recetas', getEmployees)
+router.get('/recetas', getRecetas)
 
-router.get('/recetas/:id', getEmployee)
+router.get('/recetas/:id', getReceta)
 
-router.post('/recetas', verificarJwt ,createEmployees)
+router.post('/recetas', verificarJwt ,createRecetas)
 
-router.put('/recetas/:id', updateEmployees )
+router.put('/recetas/:id', updateRecetas )
 
-router.delete('/recetas/:id', deleteEmployees)
+router.delete('/recetas/:id', deleteRecetas)
 
 export default router
